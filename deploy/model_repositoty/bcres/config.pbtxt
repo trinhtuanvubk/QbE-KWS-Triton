@@ -1,0 +1,23 @@
+name: "bcres"
+platform: "onnxruntime_onnx"
+max_batch_size : 8
+input [
+  {
+    name: "input_audio"
+    data_type: TYPE_FP32
+    dims: [101, 40]
+  }
+]
+output [
+  {
+    name: "output_embedding"
+    data_type: TYPE_FP32
+    dims: [512]
+  }
+]
+instance_group {
+  count: 1
+  kind: KIND_GPU
+}
+dynamic_batching {
+}
