@@ -2,10 +2,19 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np 
 from scipy.io import wavfile
+import sounddevice as sd
+import wavio
 import tqdm 
 from time import sleep
 from tqdm import tqdm 
 import streamlit as st
+
+import librosa
+from pathlib import Path
+import sounddevice as sd
+import wavio
+
+
 # create a function to map each words with a number 
 def mapping_words(list_path): 
     with open(list_path,'r') as f_in : 
@@ -28,33 +37,6 @@ def draw_spectrogram(file_path) :
     plt.xlabel('Sample')
     plt.ylabel('Amplitude')
     plt.specgram(signalData,Fs=samplingFrequency)
-
-
-import matplotlib.pyplot as plt
-import librosa
-from pathlib import Path
-# from encoder.inference import plot_embedding_as_heatmap
-import sounddevice as sd
-import wavio
-
-# def draw_embed(embed, name, which):
-#     """
-#     Draws an embedding.
-#     Parameters:
-#         embed (np.array): array of embedding
-#         name (str): title of plot
-#     Return:
-#         fig: matplotlib figure
-#     """
-#     fig, embed_ax = plt.subplots()
-#     plot_embedding_as_heatmap(embed)
-#     embed_ax.set_title(name)
-#     embed_ax.set_aspect("equal", "datalim")
-#     embed_ax.set_xticks([])
-#     embed_ax.set_yticks([])
-#     embed_ax.figure.canvas.draw()
-#     return fig
-
 
 def create_spectrogram(voice_sample):
     """
@@ -105,14 +87,7 @@ def save_record(path_myrecording, myrecording, fs):
     wavio.write(path_myrecording, myrecording, fs, sampwidth=2)
     return None
 
-# import random 
-# def save_record(myrecording, fs):
-#     num_random = random.randint(0,50)
-#     num_random2 = random.randint(60,100)
-#     path_myrecording = f"./data/keyword/{num_random}_{num_random2}.wav"
-#     wavio.write(path_myrecording, myrecording, fs, sampwidth=2)
-#     return None
-            
+
     
 
 
